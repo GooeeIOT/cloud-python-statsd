@@ -51,7 +51,7 @@ In Grafana, this will help you find all metric names tagged with `my_key=some_va
 Like a tagging for metrics, but automagically applied to all metrics.
 
 ```python
-initialize(host='localhost', namespace='lyletest', global_tags=['foo:bar'])
+initialize(host='localhost', namespace='my_metric_name', global_tags=['foo:bar'])
 ```
 
 ### Get More Info
