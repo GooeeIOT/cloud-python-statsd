@@ -2,6 +2,12 @@
 
 Abstraction of statsd so that all [python] clients initialize and use the same statsd API.
 
+## Installing
+
+```shell
+pip install git@github.com:GooeeIOT/cloud-python-statsd.git
+```
+
 ## Initialize StatsD Client
 
 Initialize statsd with connection info that will be globally applied to further statsd calls.
