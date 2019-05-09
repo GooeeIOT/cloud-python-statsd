@@ -9,11 +9,11 @@ Initialize statsd with connection info that will be globally applied to further 
 ```python
 from gooee_statsd import initialize
 
-initialize(host='localhost', namespace='testing123')
+initialize(host='localhost', namespace='my_app_name')
 ```
 
-> A `namespace` is prepended to *all* metrics. This should be the app name so it's unique in Grafana
-> and other apps won't accidentally write to another app's metric.
+A `namespace` is prepended to *all* metrics. *This should be the app name* so that it's unique in
+Grafana and other apps won't accidentally write to another app's metric.
 
 ## Using the StatsD Client
 
