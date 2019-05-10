@@ -37,8 +37,8 @@ statsd.incr('my.metric.name')
 import time
 from gooee_statsd import statsd
 
-start_time = time.time()
-ms = int((time.time() - start_time) * 1000)
+start_time = time.perf_counter()
+ms = int((time.perf_counter() - start_time) * 1000)
 
 statsd.timing('my_metric_name', ms)
 ```
