@@ -1,3 +1,5 @@
+import time
+
 from datadog import initialize as dd_initialize, DogStatsd
 
 
@@ -12,7 +14,7 @@ class StatsDClient(DogStatsd):
     timer = DogStatsd.timed
 
 
-def initialize(host: str, namespace: str, port: int = 8125, **kwargs):
+def initialize(host: str, namespace: str, port: int = 8125, **kwargs) -> None:
     """
     Initialize a statsd client.
 
@@ -24,3 +26,13 @@ def initialize(host: str, namespace: str, port: int = 8125, **kwargs):
 
 
 statsd = StatsDClient()
+
+
+def timer_helper(name: str, t0: float) -> None:
+    """
+    Abstract how we do timings so the caller just needs to supply a name and initial time.
+
+    t0 should be a timer.perf_counter()
+    """
+    ms = int((time.perf_counter() - t0) * 1000)
+    statsd.timer(name, ms)
