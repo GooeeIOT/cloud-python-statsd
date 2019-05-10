@@ -1,6 +1,6 @@
 import os
 import sys
-from setuptools import setup, find_packages
+from setuptools import setup
 
 project_dir = os.path.abspath(os.path.dirname(__file__))
 
