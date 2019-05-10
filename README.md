@@ -1,6 +1,12 @@
 # cloud-python-statsd
 
-Abstraction of statsd so that all [python] clients initialize and use the same statsd API.
+Abstraction of statsd so that all [python] clients initialize and use the same statsd API and
+utilities.
+
+Currently, this amounts to a basic wrapper around the
+[datadogpy](https://github.com/DataDog/datadogpy) library, but the API into the StatsD class is
+standardized and will be patched to match assuming a new library is used as to not break existing
+clients. The [datadogpy](https://github.com/~/datadogpy) library is used since it has tag support.
 
 ## Installing
 
