@@ -1,10 +1,14 @@
+import logging
 import os
 import time
 
-from datadog import initialize as dd_initialize, DogStatsd
+from datadog import DogStatsd, api
+from datadog.util.hostname import get_hostname
 
 
 name = 'gooee_statsd'
+
+LOG = logging.getLogger('gooee_statsd')
 
 
 def statsd_enabled(func):
@@ -37,15 +41,21 @@ class StatsDClient(DogStatsd):
 
 
 @statsd_enabled
-def initialize(host: str, namespace: str, port: int = 8125, **kwargs) -> None:
-    """
-    Initialize a statsd client.
-
-    It's advised to run this init only once per app execution and to surround this call at the
-    caller site with STATSD_ENABLED.
-    """
+def initialize(
+        host: str,
+        namespace: str,
+        port: int = 8125,
+        host_name: str = None,
+        use_default_route: bool = False
+) -> None:
+    """Initialize a statsd client."""
+    LOG.debug('Initializing Gooee StatsD lib with host={host} port={port}')
     # Monkeypatch the datadog statsd lib so that the "defaults" are auto supplied.
-    dd_initialize(statsd_host=host, namespace=namespace, statsd_port=port, **kwargs)
+    api._host_name = host_name if host_name is not None else get_hostname()
+    api._api_host = host
+    statsd.host = statsd.resolve_host(host, use_default_route)
+    statsd.port = port
+    statsd.namespace = namespace
 
 
 # Create handle to statsd. This is what is used by consumer apps.
