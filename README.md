@@ -66,6 +66,13 @@ Like a tagging for metrics, but automagically applied to all metrics.
 initialize(host='localhost', namespace='my_metric_name', global_tags=['foo:bar'])
 ```
 
+### Tests
+
+```shell
+pip3 install -U pytest
+pytest src/
+```
+
 ### Get More Info
 
 Check out https://datadogpy.readthedocs.io/en/latest/

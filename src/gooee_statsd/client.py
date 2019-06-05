@@ -17,7 +17,9 @@ class StatsDClient(DogStatsd):
     def timed(self, *args, **kwargs):
         super().timed(*args, **kwargs)
 
-    def _sanitize_metric(self, metric):
+    @staticmethod
+    def _sanitize_metric(metric):
+        """Prevent some common cases of "bad" metric names."""
         return metric.replace(':', '_')
 
     def increment(self, metric, value=1, tags=None, *args, **kwargs):
