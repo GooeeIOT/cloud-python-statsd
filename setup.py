@@ -24,7 +24,7 @@ setup(
     author_email='cloud-backend@gooee.com',
     description='Useful abstractions for interacting with statsd the Gooee way.',
     long_description=long_description,
-    install_requires=['datadog>=0.28.0'],
+    install_requires=['datadog>=0.28.0,<0.31.0'],
     classifiers=[
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
