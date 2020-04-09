@@ -38,6 +38,7 @@ def initialize(
     statsd.constant_tags = [f'env:{env_name}', f'app_name:{namespace}'] + (constant_tags or [])
 
 
+@statsd_enabled
 def timer_helper(
     name: str,
     t0: float,
